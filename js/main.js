@@ -4,10 +4,16 @@
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
 // genero un array di 5 numeri diversi casuali tra 1 e 99
+const daIndovinare = [];
+numsGen(daIndovinare, 5, 1, 99);
+console.log(daIndovinare);
 
 // stampo i numeri in pagina
+const container = document.getElementById('container');
+container.innerHTML = daIndovinare;
 
 // faccio partire un timer da 30 secondi
+
 
 // passati 30 secondi chiedo all'utente per 5 volte un numero da indovinare
 // pusho i numeri inseriti in un array
