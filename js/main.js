@@ -5,26 +5,39 @@
 
 // genero un array di 5 numeri diversi casuali tra 1 e 99
 const daIndovinare = [];
-numsGen(daIndovinare, 5, 1, 99);
+numsGen(daIndovinare, 5, 1, 99); // in utility.js
 console.log('numeri da indovinare', daIndovinare);
 
 // stampo i numeri in pagina
-const container = document.getElementById('container');
-container.innerHTML = daIndovinare;
+const numeri = document.getElementById('numeri');
+const titolo = document.getElementsByTagName('h2')[0];
+titolo.innerHTML = 'Memoriza questi numeri in 30 secondi:';
+numeri.innerHTML = daIndovinare;
+
+// cancello i numeri dalla pagina poco prima dello scadere dei 30 secondi  
+setTimeout(() => {
+    titolo.innerHTML = 'Numeri indovinati:'
+    numeri.innerHTML = '';
+}, 29990);
 
 // faccio partire un timer da 30 secondi
-const userNums = [];
+const indovinati = [];
 setTimeout((num) => {
-
+    
     // passati 30 secondi chiedo all'utente per 5 volte un numero da indovinare
     for (let i = 0; i < 5; i++) {
-        num = parseInt(prompt('Inserisci un nuemero'));
+        num = parseInt(prompt('Inserisci un numero'));
 
-        // pusho i numeri inseriti in un array
-        userNums.push(num);
+        // se il numero è tra quelli da indovinare lo pusho nel nuovo array
+
+        // if (daIndovinare.includes(num)) {
+        //     indovinati.push(num);
+        // }
+
+        daIndovinare.includes(num) ? indovinati.push(num): null;
     }
-    console.log("nuemri inseriti dall'utente", userNums);
-}, 30000);
 
-// confronto i due array
-// se trovo numeri uguali li stampo in pagina
+    // stampo in pagina l'array dei numeri indovinati
+    numeri.innerHTML = indovinati;
+    console.log("numeri inseriti dall'utente", indovinati);
+}, 30000);
